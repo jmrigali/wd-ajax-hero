@@ -66,11 +66,21 @@ $($search).on('click', function (){
     return;
   } else {
     var $value = $('input').val();
-    var link = 'http://omdbapi.com/?t=' + $value;
-    var info = $.getJSON(link);
-    info.done(function(data){
-      console.log(data);
+    var link = 'http://omdbapi.com/?s=' + $value;
+    var info = $.getJSON(link)
+    .done(function(data){
+      var array = data.Search;
+      array.forEach(function (element) {
+        let movie = {
+          id: data.imdbID,
+          poster: data.Poster,
+          title: data.Title,
+          year: data.Year
+        };
+        movies.push(movie);
+      });
     });
+    renderMovies(movies);
   }
 
 });
