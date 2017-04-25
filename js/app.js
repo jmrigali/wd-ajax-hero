@@ -57,4 +57,27 @@
   };
 
   // ADD YOUR CODE HERE
+  var $search = $('button');
+
+
+$($search).on('click', function (){
+  event.preventDefault();
+  if($('input').val() === '') {
+    return;
+  } else {
+    var $value = $('input').val();
+    var link = 'http://omdbapi.com/?t=' + $value;
+    var info = $.getJSON(link);
+    info.done(function(data){
+      console.log(data);
+    });
+  }
+
+});
+
+
+
+
+
+
 })();
