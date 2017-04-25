@@ -6,6 +6,7 @@
   const renderMovies = function() {
     $('#listings').empty();
 
+
     for (const movie of movies) {
       const $col = $('<div>').addClass('col s6');
       const $card = $('<div>').addClass('card hoverable');
@@ -69,13 +70,16 @@ $($search).on('click', function (){
     var link = 'http://omdbapi.com/?s=' + $value;
     var info = $.getJSON(link)
     .done(function(data){
+      while (movies.length > 0) {
+        movies.pop();
+      }
       var array = data.Search;
       array.forEach(function (element) {
         let movie = {
-          id: data.imdbID,
-          poster: data.Poster,
-          title: data.Title,
-          year: data.Year
+          id: element.imdbID,
+          poster: element.Poster,
+          title: element.Title,
+          year: element.Year
         };
         movies.push(movie);
       });
