@@ -70,6 +70,7 @@ $($search).on('click', function (){
     var link = 'http://omdbapi.com/?s=' + $value;
     var info = $.getJSON(link)
     .done(function(data){
+    
       while (movies.length > 0) {
         movies.pop();
       }
